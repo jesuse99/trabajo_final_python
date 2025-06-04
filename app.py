@@ -9,11 +9,13 @@ class App(ctk.CTk):
         super().__init__()
 
         self.title("Carrera de ciclismo")
-        self.geometry("600x400")
+        self.geometry("700x500")
 
         self.grid_columnconfigure(0, weight=1) 
         self.grid_rowconfigure(0, weight=1) 
         self.grid_rowconfigure(1, weight=2)
+        self.grid_rowconfigure(1, weight=2)
+        
 
         self.actionbox_frame = ctk.CTkFrame(self)
         self.actionbox_frame.grid(row=0, column=0, padx=10, pady=(10, 0), sticky="nsew")
@@ -36,6 +38,7 @@ class App(ctk.CTk):
 
         self.entrys = ctk.CTkEntry(self.actionbox_frame, placeholder_text="ss")
         self.entrys.grid(row=3, column=2, padx=20, pady=20)
+        
 
 
         self.button1 = ctk.CTkButton(self.actionbox_frame, text="Agregar", command=self.agregar_participante)
@@ -51,6 +54,9 @@ class App(ctk.CTk):
         self.listbox.insert(2, f"Participante {"02"} -- Tiempo {"00:11:43"}")
         self.listbox.insert(3, f"Participante {"03"} -- Tiempo {"00:09:27"}")
         self.id = 4
+
+        self.promedio = ctk.CTkLabel(self, text="Promedio de Tiempo de los Ciclistas:", fg_color="green", corner_radius=6)
+        self.promedio.grid(row=2, column=0, padx=10, pady=(10, 0), sticky="ew")
 
 
     def borrar_participante(self):
