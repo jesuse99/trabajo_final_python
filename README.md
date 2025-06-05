@@ -1,14 +1,16 @@
 # Tareas por realizar (hasta el 11)
 
-- Validacion del tiempo ingresado (try-except con la funcion time) []
-- Validacion de no ingresar texto, solo numeros []
-- Agregar al proyecto la funcion de ganador []
-- Agregar la funcion de mostrar el promedio []
-- Mostrar si batio el record anterior []
+[ ] Crear funcion para validar tiempo (hh) (solo numeros)
+[ ] Crear funcion para validar tiempo (mm y ss) (solo numeros)
+[ ] Crear funcion para validar numero de participante (solo numeros)
+[ ] Crear funcion para calcular y mostrar promedio
+[ ] Crear lista y guardar los numeros de cada part
+[ ] Crear lista y guardar los tiempos de cada part
+[ ] Crear un menu de inicio
 
 # Extras por realizar (hasta el 18)
 
-- Uso de librerias de pypy (por lo menos 3)
-- Documentacion del trabajo de como funciona en el repositorio
-- Presentacion del trabajo en (canva o gamma) 
-- Documentacion en el codigo (con comillas triples)
+[ ] Uso de librerias de pypy (por lo menos 3)
+[ ] Documentacion del trabajo de como funciona en el repositorio
+[ ] Presentacion del trabajo en (canva o gamma) 
+[ ] Documentacion en el codigo (con comillas triples)
