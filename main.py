@@ -29,9 +29,28 @@ def convertir_tiempo(tiempo_segundos):
     return horas, minutos, segundos
         
 
-parts = int(input("Ingrese cantidad participantes: "))
+def validar_numero(mensaje):
+    """
+    Función que se usa para solicitar un numero entero.
+    Usa un bucle y un bloque try-except para asegurar que el usuario
+    ingrese únicamente un número. Vuelve a solicitar el dato si se
+    introduce texto u otro carácter.
+    """
+    while True:
+        try:
+            # Intenta convertir la entrada del usuario a un entero.
+            valor = int(input(mensaje))
+            # Si tiene éxito, devuelve el valor y sale del bucle.
+            return valor
+        except ValueError:
+            # Si la conversión falla, le informa al usuario y el bucle continúa.
+            print("\nError: Valor no válido. Por favor, ingresa solo números enteros.")
+
+
+parts = validar_numero("Ingrese cantidad participantes: ")
 for part in range(parts):
-    numero = int(input("Ingrese numero de participante: "))
+    numero = validar_numero("Ingrese numero de participante: ")
+    
     
     # funcion para validar horas (completar)
     horas = 1
