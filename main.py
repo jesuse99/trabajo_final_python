@@ -1,22 +1,31 @@
 from tabulate import tabulate
-TIEMPO_RECORD = 1
+
+# Declaración e inicialización de variables
+TIEMPO_RECORD = 55
 tiempo_ganador = float('inf') 
 numero_ganador = 0
 tiempo_suma = 0
-tiempo_parts = []
+tiempo_participantes = []
 numeros_participantes = []
 
 def validar_tiempo(valor):
-    tiempo_valido = False
+    """
+    Función que recibe un valor, puede ser tanto minutos
+    como segundos, valida si se encuentra en el rango
+    correcto y devuelve el resultado de la validación
+    """
+    tiempo_valido = True
     if (valor < 0 or valor > 59):
         print("El valor no es valido, vuelva a intentarlo")
         tiempo_valido = False
-    else:
-        print("Excelente, pasemos a la siguiente")
-        tiempo_valido = True
     return not tiempo_valido
 
 def convertir_tiempo(tiempo_segundos):
+    """
+    Función que permite recibe el tiempo en segundos, y
+    realiza la conversion y devuelve el tiempo en horas, 
+    minutos y segundos
+    """
     horas = tiempo_segundos // 3600
     resto = tiempo_segundos % 3600
     minutos = resto // 60
@@ -47,6 +56,7 @@ def validar_numero(mensaje):
         return validar_numero(mensaje)
 
 
+print("Bienvenvido a ExtremeBike, el programa perfecto para carrera de ciclismo \n")
 parts = validar_numero("Ingrese cantidad participantes: ")
 for part in range(parts):
     numero = validar_numero("Ingrese numero de participante: ")
@@ -64,7 +74,7 @@ for part in range(parts):
         segundos = int(input("Ingrese segundos del participante: "))
 
     tiempo = (horas * 3600) + (minutos * 60) + segundos 
-    tiempo_parts.append(tiempo)
+    tiempo_participantes.append(tiempo)
 
     tiempo_suma = tiempo_suma + tiempo
     
@@ -75,7 +85,7 @@ for part in range(parts):
 
 tabla_participantes = []
 for i in range(parts):
-    h, m, s = convertir_tiempo(tiempo_parts[i])
+    h, m, s = convertir_tiempo(tiempo_participantes[i])
     tabla_participantes.append([numeros_participantes[i], f"{h:02d}:{m:02d}:{s:02d}"])
 
 print("\nListado de participantes y tiempos:")
@@ -95,8 +105,20 @@ if parts > 0:
     
     print(tabulate(tabla, headers=["Descripción", "Resultado"], tablefmt="fancy_grid"))
 
-# completar funcion calcular si batio record
-record = input("Ingrese tiempo record (hh/mm/ss): ")
-record = 1
+
+print("--- Ingrese tiempo record --")
+# completar horas
+horas = 1
+
+minutos = int(input("Ingrese minutos: "))
+while validar_tiempo(minutos):
+    minutos = int(input("Ingrese minutos: "))
+
+segundos = int(input("Ingrese segundos: "))
+while validar_tiempo(segundos):
+    segundos = int(input("Ingrese segundos: "))
+
+record = (horas * 3600) + (minutos * 60) + segundos 
+
 if record < TIEMPO_RECORD:
     print("Nuevo tiempo record! el ganador batio el record")
