@@ -114,8 +114,10 @@ print(tabulate(tabla_participantes, headers=["Número Participante", "Tiempo (hh
 
 if parts > 0:
     horas, minutos, segundos = convertir_tiempo(tiempo_ganador)
-    # completar funcion calcular y mostrar promedio
-    tiempo_promedio = 1
+    # Calcular el tiempo promedio
+    tiempo_promedio_segundos = tiempo_suma / parts
+    h_promedio, m_promedio, s_promedio = convertir_tiempo(int(tiempo_promedio_segundos))
+    tiempo_promedio = f"{h_promedio:02d}:{m_promedio:02d}:{s_promedio:02d}"
 
     tabla = [
         ["Número ganador", numero_ganador],
