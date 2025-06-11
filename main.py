@@ -32,7 +32,28 @@ def convertir_tiempo(tiempo_segundos):
     segundos = resto % 60
     return horas, minutos, segundos
         
-
+def validar_hora(mensaje):
+    """
+    Funcion que se usa para solicitar un numero entero.
+    Usa un bloque try-except para asegurarse de que el usuario
+    ingrese unicamente un numero y no un string, de lo contrario 
+    vuelve a solicitar el dato si se introduce texto u otro caracter.
+    """
+    try:
+        # Intenta convertir la entrada del usuario a un entero.
+        valor = int(input(mensaje))
+        # Chequea que el entero sea positivo
+        # Si tiene éxito, devuelve el valor y sale del bucle.
+        if valor < 0:
+            print("\nError: Las horas no pueden ser negativas. Ingresar solo numeros enteros positivos.")
+            return validar_hora(mensaje)
+        else:
+            return valor
+    except ValueError:
+        # Si la conversión falla, le informa al usuario y el bucle continúa.
+        print("\nError: Valor no valido. Por favor, ingresa solo numeros enteros positivos. ")
+        return validar_hora(mensaje)
+        
 def validar_numero(mensaje):
     """
     Función que se usa para solicitar un numero entero.
@@ -62,8 +83,7 @@ for part in range(parts):
     numero = validar_numero("Ingrese numero de participante: ")
     numeros_participantes.append(numero)
     
-    # funcion para validar horas (completar)
-    horas = 1
+    horas = validar_hora("Ingrese horas del participante: ")
 
     minutos = int(input("Ingrese minutos del participante: "))
     while validar_tiempo(minutos):
@@ -107,8 +127,8 @@ if parts > 0:
 
 
 print("--- Ingrese tiempo record --")
-# completar horas
-horas = 1
+
+horas = validar_hora("Ingrese horas del participante: ")
 
 minutos = int(input("Ingrese minutos: "))
 while validar_tiempo(minutos):
