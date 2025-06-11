@@ -8,6 +8,7 @@ numero_ganador = 0
 tiempo_suma = 0
 tiempo_participantes = []
 numeros_participantes = []
+participantes = []
 
 def validar_tiempo(valor):
     """
@@ -96,6 +97,11 @@ for part in range(parts):
 
     tiempo = (horas * 3600) + (minutos * 60) + segundos 
     tiempo_participantes.append(tiempo)
+    participantes.append({
+        "numero": numero,
+        "tiempo_segundos": tiempo,
+        "tiempo_formateado": f"{horas:02d}:{minutos:02d}:{segundos:02d}"
+    })
 
     tiempo_suma = tiempo_suma + tiempo
     
@@ -149,3 +155,15 @@ if tiempo_ganador < record:
 else:
     mensaje = "⏱️ No se superó el tiempo récord. Intenta de nuevo 💪"
     print(Panel.fit(f"[bold yellow]{mensaje}[/bold yellow]", border_style="red"))
+
+participantes_ordenados = sorted(participantes, key=lambda x: x['tiempo_segundos'])
+
+podio = []
+puestos = ["🥇 1er Puesto", "🥈 2do Puesto", "🥉 3er Puesto"]
+
+for i in range(min(3, len(participantes_ordenados))):
+    p = participantes_ordenados[i]
+    podio.append([puestos[i], p["numero"], p["tiempo_formateado"]])
+
+print("\n[bold cyan]--- Podio de los 3 primeros participantes ---[/bold cyan]")
+print(tabulate(podio, headers=["Puesto", "Número", "Tiempo"], tablefmt="fancy_grid"))
