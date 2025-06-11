@@ -1,7 +1,8 @@
 from tabulate import tabulate
+from rich import print
+from rich.panel import Panel
 
 # Declaración e inicialización de variables
-TIEMPO_RECORD = 55
 tiempo_ganador = float('inf') 
 numero_ganador = 0
 tiempo_suma = 0
@@ -142,5 +143,9 @@ while validar_tiempo(segundos):
 
 record = (horas * 3600) + (minutos * 60) + segundos 
 
-if record < TIEMPO_RECORD:
-    print("Nuevo tiempo record! el ganador batio el record")
+if tiempo_ganador < record:
+    mensaje = "🎉 ¡Nuevo tiempo récord! El ganador batió el récord 🏆"
+    print(Panel.fit(f"[bold green]{mensaje}[/bold green]", border_style="bright_green"))
+else:
+    mensaje = "⏱️ No se superó el tiempo récord. Intenta de nuevo 💪"
+    print(Panel.fit(f"[bold yellow]{mensaje}[/bold yellow]", border_style="red"))
