@@ -1,20 +1,3 @@
-# Tareas por realizar (hasta el 11)
-
-[ ] Crear funcion para validar tiempo (hh) (solo numeros)
-[x] Crear funcion para validar tiempo (mm y ss) (solo numeros)
-[ ] Crear funcion para validar numero de participante (solo numeros)
-[ ] Crear funcion para calcular y mostrar promedio
-[ ] Crear lista y guardar los numeros de cada part
-[x] Crear lista y guardar los tiempos de cada part
-[ ] Crear un menu de inicio
-
-# Extras por realizar (hasta el 18)
-
-[ ] Uso de librerias de pypy (por lo menos 3)
-[ ] Documentacion del trabajo de como funciona en el repositorio
-[ ] Presentacion del trabajo en (canva o gamma) 
-[ ] Documentacion en el codigo (con comillas triples)
-
 # ExtremeBike – Simulador de Carrera de Ciclismo
 
 ExtremeBike es un programa en Python que permite gestionar el registro de tiempos de ciclistas en una competencia. Calcula el tiempo promedio, identifica al ganador, compara con un tiempo récord e imprime el podio de los tres mejores participantes.
@@ -83,3 +66,19 @@ Se utilizan funciones específicas para asegurar que los datos ingresados sean v
 - Imprime mensaje usando rich.Panel con colores y estilos según si se superó el récord o no.
 - Muestra los 3 participantes con mejor tiempo en un podio. 
 
+## Tareas por realizar
+
+- [x] Crear funcion para validar tiempo (hh) (solo numeros)
+- [x] Crear funcion para validar tiempo (mm y ss) (solo numeros)
+- [x] Crear funcion para validar numero de participante (solo numeros)
+- [ ] Crear funcion para calcular y mostrar promedio
+- [x] Crear lista y guardar los numeros de cada part
+- [x] Crear lista y guardar los tiempos de cada part
+- [x] Crear un menu de inicio
+
+## Extras por realizar
+
+- [x] Uso de librerias de pypy (por lo menos 3)
+- [x] Documentacion del trabajo de como funciona en el repositorio
+- [ ] Presentacion del trabajo en (canva o gamma) 
+- [x] Documentacion en el codigo (con comillas triples)

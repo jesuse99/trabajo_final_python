@@ -10,17 +10,67 @@ tiempo_participantes = []
 numeros_participantes = []
 participantes = []
 
-def validar_tiempo(valor):
+        
+def validar_numero(mensaje):
+    """
+    Función que se usa para solicitar un numero entero.
+    Realiza una validacion para asegurar que el usuario
+    ingrese únicamente un número postivo. Vuelve a solicitar 
+    el dato si se introduce texto u otro carácter.
+    """
+    valor_valido = False
+    while not valor_valido:
+        valor = input(mensaje)
+        if valor.isnumeric():
+            valor = int(valor)
+            if valor <= 0:
+                print("\nError: Valor no válido. Por favor, ingresa solo números enteros positivos.")
+            else:
+                valor_valido = True
+        else:
+            print("\nError: Valor no válido. Por favor, ingresa solo números enteros positivos.")
+    return valor
+    
+def validar_hora(mensaje):
+    """
+    Funcion que se usa para solicitar un numero entero.
+    Realiza una validacion para asegurarse de que el usuario
+    ingrese unicamente un numero y no un string, dentro del rango
+    de tiempo correcto, de lo contrario vuelve a solicitar el dato 
+    si se introduce texto u otro caracter.
+    """
+    valor_valido = False
+    while not valor_valido:
+        valor = input(mensaje)
+        if valor.isnumeric():
+            valor = int(valor)
+            if (valor < 0 or valor > 23):
+                print("\nError: Valor no válido. Por favor, ingresa un tiempo valido.")
+            else:
+                valor_valido = True
+        else:
+            print("\nError: Valor no válido. Por favor, ingresa un tiempo valido.")
+    return valor
+
+def validar_minsec(mensaje):
     """
     Función que recibe un valor, puede ser tanto minutos
-    como segundos, valida si se encuentra en el rango
-    correcto y devuelve el resultado de la validación
+    como segundos, realiza una comprobacion del valor
+    ingresado y si se encuentra en el rango correcto,
+    retorna el valor 
     """
-    tiempo_valido = True
-    if (valor < 0 or valor > 59):
-        print("El valor no es valido, vuelva a intentarlo")
-        tiempo_valido = False
-    return not tiempo_valido
+    valor_valido = False
+    while not valor_valido:
+        valor = input(mensaje)
+        if valor.isnumeric():
+            valor = int(valor)
+            if (valor < 0 or valor > 59):
+                print("\nError: Valor no válido. Por favor, ingresa un tiempo valido.")
+            else:
+                valor_valido = True
+        else:
+            print("\nError: Valor no válido. Por favor, ingresa un tiempo valido.")
+    return valor
 
 def convertir_tiempo(tiempo_segundos):
     """
@@ -33,67 +83,18 @@ def convertir_tiempo(tiempo_segundos):
     minutos = resto // 60
     segundos = resto % 60
     return horas, minutos, segundos
-        
-def validar_hora(mensaje):
-    """
-    Funcion que se usa para solicitar un numero entero.
-    Usa un bloque try-except para asegurarse de que el usuario
-    ingrese unicamente un numero y no un string, de lo contrario 
-    vuelve a solicitar el dato si se introduce texto u otro caracter.
-    """
-    try:
-        # Intenta convertir la entrada del usuario a un entero.
-        valor = int(input(mensaje))
-        # Chequea que el entero sea positivo
-        # Si tiene éxito, devuelve el valor y sale del bucle.
-        if valor < 0:
-            print("\nError: Las horas no pueden ser negativas. Ingresar solo numeros enteros positivos.")
-            return validar_hora(mensaje)
-        else:
-            return valor
-    except ValueError:
-        # Si la conversión falla, le informa al usuario y el bucle continúa.
-        print("\nError: Valor no valido. Por favor, ingresa solo numeros enteros positivos. ")
-        return validar_hora(mensaje)
-        
-def validar_numero(mensaje):
-    """
-    Función que se usa para solicitar un numero entero.
-    Usa un bloque try-except para asegurar que el usuario
-    ingrese únicamente un número. Vuelve a solicitar el dato si se
-    introduce texto u otro carácter.
-    """
-    try:
-        # Intenta convertir la entrada del usuario a un entero.
-        valor = int(input(mensaje))
-        # Chequea que el entero sea positivo
-        # Si tiene éxito, devuelve el valor y sale del bucle.
-        if valor < 1:
-            print("\nError: Valor no válido. Por favor, ingresa solo números enteros positivos.")
-            return validar_numero(mensaje)
-        else:
-            return valor
-    except ValueError:
-        # Si la conversión falla, le informa al usuario y el bucle continúa.
-        print("\nError: Valor no válido. Por favor, ingresa solo números enteros positivos.")
-        return validar_numero(mensaje)
 
-
-print("Bienvenvido a ExtremeBike, el programa perfecto para carrera de ciclismo \n")
+print("Bienvenvido a ExtremeBike, el programa perfecto para carreras de ciclismo \n")
 parts = validar_numero("Ingrese cantidad participantes: ")
+print(parts)
+
 for part in range(parts):
     numero = validar_numero("Ingrese numero de participante: ")
     numeros_participantes.append(numero)
     
     horas = validar_hora("Ingrese horas del participante: ")
-
-    minutos = int(input("Ingrese minutos del participante: "))
-    while validar_tiempo(minutos):
-        minutos = int(input("Ingrese minutos del participante: "))
-    
-    segundos = int(input("Ingrese segundos del participante: "))
-    while validar_tiempo(segundos):
-        segundos = int(input("Ingrese segundos del participante: "))
+    minutos = validar_minsec("Ingrese minutos del participante: ")
+    segundos = validar_minsec("Ingrese segundos del participante: ")
 
     tiempo = (horas * 3600) + (minutos * 60) + segundos 
     tiempo_participantes.append(tiempo)
@@ -118,34 +119,24 @@ for i in range(parts):
 print("\nListado de participantes y tiempos:")
 print(tabulate(tabla_participantes, headers=["Número Participante", "Tiempo (hh:mm:ss)"], tablefmt="fancy_grid"))
 
+h_ganador, m_ganador, s_ganador = convertir_tiempo(tiempo_ganador)
 
-if parts > 0:
-    horas, minutos, segundos = convertir_tiempo(tiempo_ganador)
-    # Calcular el tiempo promedio
-    tiempo_promedio_segundos = tiempo_suma / parts
-    h_promedio, m_promedio, s_promedio = convertir_tiempo(int(tiempo_promedio_segundos))
-    tiempo_promedio = f"{h_promedio:02d}:{m_promedio:02d}:{s_promedio:02d}"
+tiempo_promedio_segundos = tiempo_suma / parts
+h_promedio, m_promedio, s_promedio = convertir_tiempo(int(tiempo_promedio_segundos))
 
-    tabla = [
-        ["Número ganador", numero_ganador],
-        ["Tiempo ganador", f"{horas:02d}:{minutos:02d}:{segundos:02d}"],
-        ["Tiempo promedio", tiempo_promedio]
-    ]
-    
-    print(tabulate(tabla, headers=["Descripción", "Resultado"], tablefmt="fancy_grid"))
+tabla = [
+    ["Número ganador", numero_ganador],
+    ["Tiempo ganador", f"{h_ganador:02d}:{m_ganador:02d}:{s_ganador:02d}"],
+    ["Tiempo promedio", f"{h_promedio:02d}:{m_promedio:02d}:{s_promedio:02d}"]
+]
 
+print(tabulate(tabla, headers=["Descripción", "Resultado"], tablefmt="fancy_grid"))
 
 print("--- Ingrese tiempo record --")
 
 horas = validar_hora("Ingrese horas del participante: ")
-
-minutos = int(input("Ingrese minutos: "))
-while validar_tiempo(minutos):
-    minutos = int(input("Ingrese minutos: "))
-
-segundos = int(input("Ingrese segundos: "))
-while validar_tiempo(segundos):
-    segundos = int(input("Ingrese segundos: "))
+minutos = validar_minsec("Ingrese minutos del participante: ")
+segundos = validar_minsec("Ingrese segundos del participante: ")
 
 record = (horas * 3600) + (minutos * 60) + segundos 
 
