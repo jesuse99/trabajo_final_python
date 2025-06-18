@@ -71,7 +71,7 @@ Se utilizan funciones específicas para asegurar que los datos ingresados sean v
 - [x] Crear funcion para validar tiempo (hh) (solo numeros)
 - [x] Crear funcion para validar tiempo (mm y ss) (solo numeros)
 - [x] Crear funcion para validar numero de participante (solo numeros)
-- [ ] Crear funcion para calcular y mostrar promedio
+- [x] Crear funcion para calcular y mostrar promedio
 - [x] Crear lista y guardar los numeros de cada part
 - [x] Crear lista y guardar los tiempos de cada part
 - [x] Crear un menu de inicio
