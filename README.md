@@ -80,5 +80,5 @@ Se utilizan funciones específicas para asegurar que los datos ingresados sean v
 
 - [x] Uso de librerias de pypy (por lo menos 3)
 - [x] Documentacion del trabajo de como funciona en el repositorio
-- [ ] Presentacion del trabajo en (canva o gamma) 
+- [x] Presentacion del trabajo en (canva o gamma) 
 - [x] Documentacion en el codigo (con comillas triples)

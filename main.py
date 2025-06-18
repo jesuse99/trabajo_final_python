@@ -86,10 +86,13 @@ def convertir_tiempo(tiempo_segundos):
 
 print("Bienvenvido a ExtremeBike, el programa perfecto para carreras de ciclismo \n")
 parts = validar_numero("Ingrese cantidad participantes: ")
-print(parts)
 
 for part in range(parts):
+    print("-"*50)
     numero = validar_numero("Ingrese numero de participante: ")
+    while numero in numeros_participantes:
+        print("\nError: El numero ya fue ingresado. Por favor, ingresa un numero diferente.")
+        numero = validar_numero("Ingrese numero de participante: ")
     numeros_participantes.append(numero)
     
     horas = validar_hora("Ingrese horas del participante: ")
@@ -132,7 +135,7 @@ tabla = [
 
 print(tabulate(tabla, headers=["Descripción", "Resultado"], tablefmt="fancy_grid"))
 
-print("--- Ingrese tiempo record --")
+print("\n--- Ingrese tiempo record ---")
 
 horas = validar_hora("Ingrese horas del participante: ")
 minutos = validar_minsec("Ingrese minutos del participante: ")
